@@ -47,3 +47,43 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+
+
+
+# Python
+__pycache__/
+*.py[cod]
+.env
+venv/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Data files (too large for git)
+*.csv
+*.xlsx
+*.parquet
+data/raw/*
+!data/raw/.gitkeep
+
+# Model files
+*.pt
+*.bin
+*.safetensors
+
+# Results (regenerable)
+results/baseline/*
+results/finetuned/*
+!results/baseline/.gitkeep
+!results/finetuned/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
