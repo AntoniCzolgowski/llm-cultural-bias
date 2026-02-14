@@ -1,0 +1,4 @@
+persona_id,n_responses,mean_response,std_response,n_invalid,avg_time_sec,refusal_rate
+CHN_Male_30-49_Higher,10,2.6,0.966,0,0.243,0.0
+SVK_Female_50-64_Medium,10,8.2,0.632,0,0.195,0.0
+USA_Male_18-29_Medium,10,4.8,0.422,0,0.187,0.0

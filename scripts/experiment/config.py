@@ -102,7 +102,7 @@ SEX_MAP = {
 PILOT_PERSONAS = [
     'CHN_Male_30-49_Higher',     # China, secular
     'SVK_Female_50-64_Medium',   # Slovakia, moderate
-    'USA_Male_18-29_Lower',      # USA, religious
+    'USA_Male_18-29_Medium',      # USA, religious
 ]
 
 
