@@ -1,0 +1,16 @@
+model,persona_id,country,sex,age_group,education,w1_norm,w1_ci_lower,w1_ci_upper
+bielik,USA_Male_30-49_Medium,USA,Male,30-49,Medium,0.365,0.339,0.391
+bielik,USA_Male_18-29_Medium,USA,Male,18-29,Medium,0.355,0.319,0.389
+bielik,USA_Male_50-64_Higher,USA,Male,50-64,Higher,0.34,0.316,0.367
+bielik,USA_Female_18-29_Medium,USA,Female,18-29,Medium,0.327,0.297,0.356
+bielik,USA_Male_18-29_Higher,USA,Male,18-29,Higher,0.321,0.294,0.349
+gemma3,SVK_Male_30-49_Lower,SVK,Male,30-49,Lower,0.474,0.377,0.569
+gemma3,USA_Male_30-49_Higher,USA,Male,30-49,Higher,0.369,0.346,0.391
+gemma3,SVK_Male_30-49_Medium,SVK,Male,30-49,Medium,0.391,0.329,0.452
+gemma3,USA_Female_18-29_Higher,USA,Female,18-29,Higher,0.353,0.329,0.379
+gemma3,USA_Male_18-29_Medium,USA,Male,18-29,Medium,0.353,0.318,0.387
+qwen,CHN_Male_65+_Medium,CHN,Male,65+,Medium,0.637,0.553,0.711
+qwen,CHN_Male_65+_Lower,CHN,Male,65+,Lower,0.583,0.544,0.621
+qwen,CHN_Male_65+_Higher,CHN,Male,65+,Higher,0.611,0.537,0.667
+qwen,CHN_Male_50-64_Lower,CHN,Male,50-64,Lower,0.531,0.505,0.554
+qwen,CHN_Male_30-49_Medium,CHN,Male,30-49,Medium,0.526,0.491,0.559
