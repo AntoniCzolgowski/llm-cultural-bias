@@ -12,7 +12,7 @@ We measure cultural bias in three open-weight LLMs by comparing their simulated 
 
 **Key findings:**
 - All three models show significant cultural bias (two-way ANOVA interaction F(4,180) = 26.4, p < 0.001)
-- Contrary to expectations, no model favors its home country — all perform best on Chinese personas
+- Contrary to expectations, no model favors its home country.
 - LoRA fine-tuning on the 5 worst-case personas reduces bias by 16.8% for Bielik but increases it by 13.9% for Qwen
 - Fine-tuning side effects are model-dependent: Bielik improves broadly, Qwen worsens on non-target personas
 
