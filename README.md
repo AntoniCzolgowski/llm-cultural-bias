@@ -3,7 +3,7 @@
 Code and data for the paper:
 
 > **Cultural Discrimination in Large Language Models: Measuring and Mitigating Bias Using the World Values Survey**
-> Antoni Czolgowski, University of Colorado Boulder
+> Antoni Czolgowski and Abel Iyasele, University of Colorado Boulder
 > OSSConf 2026
 
 ## Summary
@@ -11,18 +11,18 @@ Code and data for the paper:
 We measure cultural bias in three open-weight LLMs by comparing their simulated survey responses to real human data from the World Values Survey (Wave 7, Q164: "How important is God in your life?"). Each model is prompted with 63 demographic personas (3 countries x 2 sexes x 4 age groups x 3 education levels) and queried 100 times per persona. Bias is quantified using the normalized Wasserstein-1 (W1) distance between model-generated and human response distributions.
 
 **Key findings:**
-- All three models show significant cultural bias (ANOVA F = 42.8, p < 0.001)
-- Models are most accurate for their culturally aligned country
+- All three models show significant cultural bias (two-way ANOVA interaction F(4,180) = 26.4, p < 0.001)
+- Contrary to expectations, no model favors its home country — all perform best on Chinese personas
 - LoRA fine-tuning on the 5 worst-case personas reduces bias by 16.8% for Bielik but increases it by 13.9% for Qwen
 - Fine-tuning side effects are model-dependent: Bielik improves broadly, Qwen worsens on non-target personas
 
 | Model | Origin | CHN W1 | SVK W1 | USA W1 |
 |-------|--------|--------|--------|--------|
-| Gemma 3 12B | Google (USA) | 0.251 | 0.137 | **0.067** |
-| Bielik 11B v3 | SpeakLeash (Poland) | 0.341 | **0.080** | 0.192 |
-| Qwen 3 4B | Alibaba (China) | **0.081** | 0.196 | 0.252 |
+| Bielik 11B v3 | SpeakLeash (Poland) | **0.173** | 0.249 | 0.288 |
+| Gemma 3 12B | Google (USA) | **0.199** | 0.306 | 0.293 |
+| Qwen 3 4B | Alibaba (China) | 0.436 | **0.286** | 0.348 |
 
-*Bold = lowest W1 (best accuracy) per model. Lower is better.*
+*Bold = lowest W1 (best alignment) per model. Lower is better.*
 
 ## Pipeline
 
