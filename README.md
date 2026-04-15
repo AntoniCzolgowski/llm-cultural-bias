@@ -47,7 +47,7 @@ Supporting modules (imported by pipeline scripts):
 
 ## Data
 
-Steps 1, 4, 4b, and 4c require the full WVS Wave 7 microdata, available at [worldvaluessurvey.org](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp) (free registration). Set `export WVS_CSV_PATH="/path/to/WVS_Cross-National_Wave_7_csv_v6_0.csv"` before running those steps. All other data is included in the repository.
+Steps 4b and 4c require the full WVS Wave 7 microdata, available at [worldvaluessurvey.org](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp) (free registration). Set `export WVS_CSV_PATH="/path/to/WVS_Cross-National_Wave_7_csv_v6_0.csv"` before running those steps. All other data is included in the repository.
 
 ## Environment Setup
 
