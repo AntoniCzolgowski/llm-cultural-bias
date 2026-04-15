@@ -1,0 +1,26 @@
+# Religious questions excluded (data leakage prevention):
+Q6
+Q15
+Q64
+Q94
+Q160
+Q164
+Q165
+Q166
+Q167
+Q168
+Q169
+Q170
+Q171
+Q172
+Q173
+Q174
+Q175
+Q239
+Q242
+Q289
+
+# Knowledge questions excluded (not opinions):
+Q91
+Q92
+Q93

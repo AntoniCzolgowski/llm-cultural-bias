@@ -1,0 +1,57 @@
+# R
+.Rhistory
+.Rapp.history
+.RData
+.RDataTmp
+.Ruserdata
+.Renviron
+.Rproj.user/
+*.Rproj
+.Rprofile
+*-Ex.R
+/*.tar.gz
+/*.Rcheck/
+vignettes/*.html
+vignettes/*.pdf
+*_cache/
+/cache/
+*.utf8.md
+*.knit.md
+rsconnect/
+docs/
+po/*~
+
+# Python
+__pycache__/
+*.py[cod]
+.env
+venv/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data files (too large for git)
+*.xlsx
+*.parquet
+
+# Model files
+models/
+*.pt
+*.bin
+*.safetensors
+
+# Checkpoints (regenerable)
+checkpoints/
+
+# Figures (only PDFs tracked)
+figures/*.png
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+.claude/

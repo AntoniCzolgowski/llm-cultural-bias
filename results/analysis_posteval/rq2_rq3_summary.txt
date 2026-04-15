@@ -1,0 +1,50 @@
+====================================================================== 
+  RQ2 + RQ3 SUMMARY REPORT
+====================================================================== 
+
+RQ2: Does LoRA fine-tuning reduce bias on worst-case personas?
+================================================== 
+
+BIELIK:
+  Targets: USA_Male_30-49_Medium, USA_Male_18-29_Medium, USA_Male_50-64_Higher, USA_Female_18-29_Medium, USA_Male_18-29_Higher
+  Mean W1 change: -0.0578 (-16.9%)
+  Paired t-test: t=-9.811, df=4, p=0.000605
+  Cohen's d: -4.388
+  95% CI: [-0.0742, -0.0415]
+  Bonferroni p: 0.002420 (SIGNIFICANT)
+
+QWEN:
+  Targets: CHN_Male_65+_Medium, CHN_Male_65+_Lower, CHN_Male_65+_Higher, CHN_Male_50-64_Lower, CHN_Male_30-49_Medium
+  Mean W1 change: 0.0815 (14.1%)
+  Paired t-test: t=3.563, df=4, p=0.023530
+  Cohen's d: 1.593
+  95% CI: [0.0180, 0.1450]
+  Bonferroni p: 0.094120 (not significant)
+
+
+RQ3: Are there side effects on non-target personas?
+================================================== 
+
+BIELIK:
+  Non-target personas: 58
+  Mean W1 change: 0.0194 (8.7%)
+  Paired t-test: t=1.775, df=57, p=0.081169
+  Cohen's d: 0.233
+  Bonferroni p: 0.324676 (not significant)
+
+QWEN:
+  Non-target personas: 58
+  Mean W1 change: 0.0123 (3.6%)
+  Paired t-test: t=1.244, df=57, p=0.218635
+  Cohen's d: 0.163
+  Bonferroni p: 0.874541 (not significant)
+
+
+Bonferroni correction table:
+# A tibble: 4 × 4
+  test          raw_p bonferroni_p significant
+  <chr>         <dbl>        <dbl> <lgl>      
+1 rq2_bielik 0.000605      0.00242 TRUE       
+2 rq2_qwen   0.0235        0.0941  FALSE      
+3 rq3_bielik 0.0812        0.325   FALSE      
+4 rq3_qwen   0.219         0.875   FALSE      
