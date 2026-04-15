@@ -80,7 +80,7 @@ export SLURM_ACCOUNT="your_account"
 # Test run (~1 hour)
 sbatch slurm/lora_test.sh
 
-# Full training (~4 hours)
+# Full training (~20 min)
 sbatch slurm/lora_full.sh
 ```
 
