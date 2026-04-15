@@ -77,7 +77,7 @@ export LLM_BIAS_DIR="/path/to/llm-cultural-bias"
 export LLM_BIAS_MODELS_DIR="/path/to/models"
 export SLURM_ACCOUNT="your_account"
 
-# Test run (~1 hour)
+# Test run (~5 min)
 sbatch slurm/lora_test.sh
 
 # Full training (~20 min)
