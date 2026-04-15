@@ -73,41 +73,12 @@ cat(sprintf("Qwen:   %d personas × %d questions = %d training pairs\n",
             n_distinct(qwen_full$question_id),
             nrow(qwen_full)))
 
+# =============================================================================
+# 6. FILTER: minimum 5 valid responses per question per persona
+# =============================================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Filter, need more than 5 responses in an aggregated persona profile
-
-
-# ============================================================
-# Filter: minimum 5 valid responses per question per persona
-# ============================================================
-
-# We need to go back to individual-level data to count valid responses per question per persona
-# Reload the cleaned WVS data and count non-NA per persona × question
-
+# Reload individual-level WVS data to count valid responses per persona x question
 wvs_opinions <- read_csv("data/training/all_personas_aggregated.csv", show_col_types = FALSE)
-
-# The aggregated file has means but not per-question N counts
-# We need to recompute from raw data
 
 wvs_raw <- read_csv(Sys.getenv("WVS_CSV_PATH", "data/raw/WVS_Cross-National_Wave_7_csv_v6_0.csv"),
                     show_col_types = FALSE)

@@ -31,7 +31,7 @@ cat(sprintf("  %d respondents, %d countries\n", nrow(df), n_distinct(df$B_COUNTR
 # --- Encode Personas ---------------------------------------------------------
 cat("Encoding personas...\n")
 
-df <- df %>%
+df <- df |>
   mutate(
     country   = B_COUNTRY_ALPHA,
     sex       = if_else(Q260 == 1, "Male", "Female"),
@@ -59,16 +59,16 @@ compute_pmf <- function(responses) {
   counts / sum(counts)
 }
 
-personas <- df %>%
-  group_by(persona_id, country, sex, age_group, education) %>%
+personas <- df |>
+  group_by(persona_id, country, sex, age_group, education) |>
   summarise(
     n_respondents = n(),
     mean_response = mean(Q164),
     std_response  = sd(Q164),
     pmf           = list(compute_pmf(Q164)),
     .groups = "drop"
-  ) %>%
-  filter(n_respondents >= 10) %>%
+  ) |>
+  filter(n_respondents >= 10) |>
   arrange(persona_id)
 
 cat(sprintf("  %d valid personas\n", nrow(personas)))
@@ -76,7 +76,7 @@ cat(sprintf("  %d valid personas\n", nrow(personas)))
 # --- Summary -----------------------------------------------------------------
 cat("\n--- Summary by Country ---\n")
 for (c in c("CHN", "SVK", "USA")) {
-  sub <- personas %>% filter(country == c)
+  sub <- personas |> filter(country == c)
   cat(sprintf("  %s: %d personas, N range [%d-%d], mean response %.2f\n",
               c, nrow(sub), as.integer(min(sub$n_respondents)),
               as.integer(max(sub$n_respondents)),
@@ -92,12 +92,12 @@ cat(sprintf("  N >= 100:      %d personas\n",
             sum(personas$n_respondents >= 100)))
 
 # --- Save CSV ----------------------------------------------------------------
-csv_df <- personas %>%
+csv_df <- personas |>
   select(persona_id, country, sex, age_group, education,
-         n_respondents, mean_response, std_response) %>%
+         n_respondents, mean_response, std_response) |>
   bind_cols(
-    personas$pmf %>%
-      map(~ set_names(.x, paste0("pmf_", 1:10))) %>%
+    personas$pmf |>
+      map(~ set_names(.x, paste0("pmf_", 1:10))) |>
       bind_rows()
   )
 

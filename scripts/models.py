@@ -39,9 +39,9 @@ class OllamaModel(BaseModel):
                 messages=[{'role': 'user', 'content': 'Say OK'}],
                 options={'num_predict': 5}
             )
-            print(f"  ✓ {model_name} loaded")
+            print(f"  [OK] {model_name} loaded")
         except Exception as e:
-            print(f"  ✗ Error loading {model_name}: {e}")
+            print(f"  [FAIL] Error loading {model_name}: {e}")
             raise
     
     def generate(self, user_prompt: str) -> str:
@@ -104,7 +104,7 @@ class TransformersModel(BaseModel):
             torch_dtype=torch.bfloat16,
         )
         
-        print(f"  ✓ {model_name} loaded")
+        print(f"  [OK] {model_name} loaded")
     
     def generate(self, user_prompt: str) -> str:
         """Generate response using Transformers"""

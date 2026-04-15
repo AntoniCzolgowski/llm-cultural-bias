@@ -359,6 +359,52 @@ cat("\n  These 5 personas will be targeted for LoRA fine-tuning.\n")
 cat("  Fine-tuning models: Bielik + Qwen (Transformers-based)\n")
 
 # =============================================================================
+# Top 5 worst-case personas PER MODEL
+# =============================================================================
+
+# Top 5 per model, ranked by W1 lower CI bound
+top5_per_model <- boot_results |>
+  group_by(model) |>
+  slice_max(w1_ci_lower, n = 5) |>
+  arrange(model, desc(w1_ci_lower)) |>
+  select(model, persona_id, country, sex, age_group, education,
+         w1_norm, w1_ci_lower, w1_ci_upper) |>
+  mutate(
+    w1_norm     = round(w1_norm, 3),
+    w1_ci_lower = round(w1_ci_lower, 3),
+    w1_ci_upper = round(w1_ci_upper, 3)
+  )
+
+# Print clean table
+cat("\n")
+for (m in c("bielik", "gemma3", "qwen")) {
+  origin <- case_when(m == "bielik" ~ "Poland", m == "gemma3" ~ "USA", m == "qwen" ~ "China")
+  cat(sprintf("=== %s (%s) — Top 5 worst-case personas ===\n", toupper(m), origin))
+  top5_per_model |>
+    filter(model == m) |>
+    ungroup() |>
+    mutate(rank = row_number()) |>
+    select(rank, persona_id, country, w1_norm, w1_ci_lower, w1_ci_upper) |>
+    print(n = 5)
+  cat("\n")
+}
+
+# Check overlaps
+cat("=== OVERLAP ANALYSIS ===\n")
+for (m1 in c("bielik", "gemma3", "qwen")) {
+  for (m2 in c("bielik", "gemma3", "qwen")) {
+    if (m1 < m2) {
+      p1 <- top5_per_model |> filter(model == m1) |> pull(persona_id)
+      p2 <- top5_per_model |> filter(model == m2) |> pull(persona_id)
+      overlap <- intersect(p1, p2)
+      cat(sprintf("  %s ∩ %s: %d overlap", m1, m2, length(overlap)))
+      if (length(overlap) > 0) cat(sprintf(" → %s", paste(overlap, collapse = ", ")))
+      cat("\n")
+    }
+  }
+}
+
+# =============================================================================
 # SAVE ALL OUTPUTS
 # =============================================================================
 cat("\n", "=" |> strrep(70), "\n")
@@ -402,64 +448,12 @@ rq1_table_out <- file.path(output_dir, "rq1_model_country_table.csv")
 rq1_table |> write_csv(rq1_table_out)
 cat(sprintf("  Saved: %s\n", rq1_table_out))
 
+# Top 5 per model
+top5_model_out <- file.path(output_dir, "top5_per_model.csv")
+top5_per_model |> write_csv(top5_model_out)
+cat(sprintf("  Saved: %s\n", top5_model_out))
+
 cat("\n  All outputs saved to:", output_dir, "\n")
 cat("=" |> strrep(70), "\n")
 cat("  ANALYSIS COMPLETE\n")
 cat("=" |> strrep(70), "\n")
-
-
-
-
-# =============================================================================
-# Top 5 worst-case personas PER MODEL
-# =============================================================================
-library(tidyverse)
-
-# Load bootstrap results
-boot <- read_csv("results/analysis/w1_bootstrap_ci.csv", show_col_types = FALSE)
-
-# Top 5 per model, ranked by W1 lower CI bound
-top5_per_model <- boot |>
-  group_by(model) |>
-  slice_max(w1_ci_lower, n = 5) |>
-  arrange(model, desc(w1_ci_lower)) |>
-  select(model, persona_id, country, sex, age_group, education,
-         w1_norm, w1_ci_lower, w1_ci_upper) |>
-  mutate(
-    w1_norm     = round(w1_norm, 3),
-    w1_ci_lower = round(w1_ci_lower, 3),
-    w1_ci_upper = round(w1_ci_upper, 3)
-  )
-
-# Print clean table
-cat("\n")
-for (m in c("bielik", "gemma3", "qwen")) {
-  origin <- case_when(m == "bielik" ~ "Poland", m == "gemma3" ~ "USA", m == "qwen" ~ "China")
-  cat(sprintf("=== %s (%s) — Top 5 worst-case personas ===\n", toupper(m), origin))
-  top5_per_model |>
-    filter(model == m) |>
-    ungroup() |>
-    mutate(rank = row_number()) |>
-    select(rank, persona_id, country, w1_norm, w1_ci_lower, w1_ci_upper) |>
-    print(n = 5)
-  cat("\n")
-}
-
-# Check overlaps
-cat("=== OVERLAP ANALYSIS ===\n")
-for (m1 in c("bielik", "gemma3", "qwen")) {
-  for (m2 in c("bielik", "gemma3", "qwen")) {
-    if (m1 < m2) {
-      p1 <- top5_per_model |> filter(model == m1) |> pull(persona_id)
-      p2 <- top5_per_model |> filter(model == m2) |> pull(persona_id)
-      overlap <- intersect(p1, p2)
-      cat(sprintf("  %s ∩ %s: %d overlap", m1, m2, length(overlap)))
-      if (length(overlap) > 0) cat(sprintf(" → %s", paste(overlap, collapse = ", ")))
-      cat("\n")
-    }
-  }
-}
-
-# Save
-top5_per_model |> write_csv("results/analysis/top5_per_model.csv")
-cat("\nSaved: results/analysis/top5_per_model.csv\n")

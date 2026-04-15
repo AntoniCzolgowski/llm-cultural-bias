@@ -66,7 +66,7 @@ def test_parser():
     passed = 0
     for input_text, expected in test_cases:
         result = parse_response(input_text)
-        status = "✓" if result == expected else "✗"
+        status = "PASS" if result == expected else "FAIL"
         if result != expected:
             print(f"  {status} parse_response({repr(input_text)}) = {result}, expected {expected}")
         passed += (result == expected)

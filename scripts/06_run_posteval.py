@@ -120,7 +120,7 @@ def load_model_with_lora(model_key):
 
     total_params = sum(p.numel() for p in model.parameters())
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    log.info(f"  ✓ {model_key}+LoRA loaded ({total_params/1e9:.2f}B params, {trainable} trainable)")
+    log.info(f"  [OK] {model_key}+LoRA loaded ({total_params/1e9:.2f}B params, {trainable} trainable)")
 
     return model, tokenizer
 

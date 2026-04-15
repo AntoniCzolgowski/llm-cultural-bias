@@ -54,7 +54,7 @@ def run_baseline(model_keys: list = None, resume: bool = True):
             exp.run(resume=resume)
             
         except Exception as e:
-            print(f"\n❌ ERROR in {model_key}: {e}")
+            print(f"\nERROR in {model_key}: {e}")
             import traceback
             traceback.print_exc()
             print("\nContinuing with next model...")
