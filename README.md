@@ -45,17 +45,11 @@ Supporting modules (imported by pipeline scripts):
 - `models.py` — Ollama and Transformers model wrappers
 - `experiment.py` — experiment class with checkpointing
 
-## Data Requirements
+## Data
 
-**WVS Wave 7 microdata** is required for steps 1, 4b, and 4c. Due to licensing, it is not included in this repository.
+All data needed to run steps 2-8 is included in the repository. 
 
-1. Register and download from [worldvaluessurvey.org](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp)
-2. Set the environment variable:
-   ```bash
-   export WVS_CSV_PATH="/path/to/WVS_Cross-National_Wave_7_csv_v6_0.csv"
-   ```
-
-The subset file `data/raw/wvs_wave7_subset.csv` (Q164 responses for CHN, SVK, USA) is included and sufficient for steps 2-8.
+Steps 1, 4b, and 4c require the full WVS Wave 7 microdata, available at [worldvaluessurvey.org](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp) (free registration). Set `export WVS_CSV_PATH="/path/to/WVS_Cross-National_Wave_7_csv_v6_0.csv"` before running those steps.
 
 ## Environment Setup
 
@@ -109,17 +103,6 @@ llm-cultural-bias/
 │   ├── analysis/                   # RQ1 statistical outputs (step 4)
 │   └── analysis_posteval/          # RQ2+RQ3 statistical outputs (step 7)
 └── figures/                        # Publication figures as PDF (step 8)
-```
-
-## Citation
-
-```bibtex
-@inproceedings{czolgowski2026cultural,
-  title     = {Cultural Discrimination in Large Language Models: Measuring and Mitigating Bias Using the World Values Survey},
-  author    = {Czolgowski, Antoni},
-  booktitle = {Proceedings of the Open Source Software Conference (OSSConf)},
-  year      = {2026}
-}
 ```
 
 ## License
